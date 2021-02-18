@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+        <title>Pagina de Contacto - Edicion para todos</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../CSS/estilo_Nuevo.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        
+       
+    </head>
+
+      <!-- Header de la página, acá iria el logo, título y links-->
+    
+  <body class="body">
+    <header class="headerFijo">
+          <nav class="nav">
+              <div class="logo"> Edicion Para Todos </div>
+              <input type="checkbox" id="click">
+                  <label for="click" class="menu-btn">
+                      <i class="fas fa-bars"></i>
+                  </label>
+              <ul>
+                  <li><a href="./Tutores.html">Tutores</a></li>
+                  <li><a href="./Contacto.html">Contacto</a></li>
+                  <li><a href="../carrito.html">Cursos</a></li>
+              </ul>
+          </nav>
+      </header>
+
+            <!-- Main de la página, acá iria el texto, videos e imagenes-->
+
+            <main class="main">
+                <meta name="keywords" content="Curso de edicion, edicion para todos, contacto, soporte tecnico, inscripcion">
+                
+                    <div class="container" style="margin-top:30px">
+                        <meta name="description" content="Pagina sobre nosotros y fomulario de contacto">
+                        <div class="row">
+                            <div class="col-sm-12" style="padding: 0;">
+                                <div class="contenedor__imagen">
+                                    <h2 class="contenedor-texto__sobreImagen contenedor-texto__sobreImagen--cabecera" style="padding-top: 2%;"> <h2 style="color: white;" > Pago  </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sectorContacto"> 
+                        <div class="container" style="padding-bottom: 1px; padding-top: 1px;">                        
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h2 style="text-align: center;"></h2>       
+                                     
+                                    </div>
+                                        <div class="col-12">
+                                            <p>Su total a pagar es de: <b id="totalPagar"></b> </p>
+                                            <p>Por favor seleccione la cantidad de cuotas</p>
+                                            <div class="form-group" style="color: black;">
+                                                <select id="marcaTarjeta" placeholder="Tipo de tarjeta">
+                                                    <option value="1">1</option>
+                                                    <option value="3">3</option>
+                                                    <option value="6">6</option>
+                                                    <option value="12">12</option> 
+                                                </select>
+                                            </div>
+                                           <p> Su monto por cuota será de: <b id=cantidadCuotas></b> </p> 
+                                        </div>
+                                   
+                                    <div id="product-list" class="col-md-8">
+
+                                    </div>
+
+                                </div>
+                        </div>
+                    </div>
+                
+
+                <footer class="footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <hr>
+                                <h6>NOSOTROS</h6>
+                                <p class="text-justify"> <i>Edición Para Todos </i> es una página diseñada para la tutoría y
+                                    desarrollo de futuros editores de video. Puedes encontrar información extra en la pestaña
+                                    <i>Contacto</i> o comunicarte con nosotros en cualquiera de los siguientes canales
+                                </p>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <h6>CONTACTO</h6>
+                                <ul class="footerContacto">
+                                    <li>+54 011 38622186</li>
+                                    <li>Edicionparatodos@gmail.com</a></li>
+                                    <li>San Nicolas 2022 - 4A</li>
+                                    <li>Capital Federal, Buenos Aires</li>
+                                </ul>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <h6>Links Rapidos</h6>
+                                <ul class="footerLinks">
+                                    <li><a href="../Index.html">Home</a></li>
+                                    <li><a href="./Cursos.html">Cursos</a></li>
+                                    <li><a href="./Tutores.html">Tutores</a></li>
+                                    <li><a href="./Contacto.html">Contacto</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                <p class="copyright">Copyright &copy; 2020 All Rights Reserved by
+                                    <a href="#">Alexis Tinti</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </main>
+            <script src="../js/pago.js"></script>
+            
+    </body>
+</html>
