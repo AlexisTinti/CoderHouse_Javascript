@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
      <head>
-        <title>Pagina de Contacto - Edicion para todos</title>
+        <title>Pagina de Pago - Edicion para todos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="../CSS/estilo_Nuevo.css">
@@ -31,8 +31,6 @@
           </nav>
       </header>
 
-            <!-- Main de la página, acá iria el texto, videos e imagenes-->
-
             <main class="main">
                 <meta name="keywords" content="Curso de edicion, edicion para todos, contacto, soporte tecnico, inscripcion">
                 
@@ -50,18 +48,17 @@
                         <div class="container" style="padding-bottom: 1px; padding-top: 1px;">                        
                                 <div class="row">
                                     <div class="col-12">
-                                        <h2 style="text-align: center;"></h2>       
-                                     
+                                        <h2 style="text-align: center;"></h2>                                           
                                     </div>
                                         <div class="col-12">
                                             <p>Su total a pagar es de: <b id="totalPagar"></b> </p>
                                             <p>Por favor seleccione la cantidad de cuotas</p>
                                             <div class="form-group" style="color: black;">
-                                                <select id="marcaTarjeta" placeholder="Tipo de tarjeta">
-                                                    <option value="1">1</option>
-                                                    <option value="3">3</option>
-                                                    <option value="6">6</option>
-                                                    <option value="12">12</option> 
+                                                <select id="opcionCuotas" placeholder="Ingrese el numero de cuotas">
+                                                    <option id="1">1</option>
+                                                    <option id="3">3</option>
+                                                    <option id="6">6</option>
+                                                    <option id="12">12</option> 
                                                 </select>
                                             </div>
                                            <p> Su monto por cuota será de: <b id=cantidadCuotas></b> </p> 

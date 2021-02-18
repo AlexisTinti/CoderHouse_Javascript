@@ -52,8 +52,6 @@ document.getElementById("product-form").addEventListener("submit", function(e)
    const marca = document.getElementById("marcaTarjeta").value;
    const numero = document.getElementById("numeroTarjeta").value;
 
-   alert(nombre + " " + marca+ " " +numero);
-
    const tarjeta = new Tarjeta(nombre, marca, numero);
    const ui = new Usuario();
    ui.agregarTarjeta(tarjeta);
