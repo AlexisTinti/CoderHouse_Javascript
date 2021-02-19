@@ -51,17 +51,23 @@
                                         <h2 style="text-align: center;"></h2>                                           
                                     </div>
                                         <div class="col-12">
-                                            <p>Su total a pagar es de: <b id="totalPagar"></b> </p>
-                                            <p>Por favor seleccione la cantidad de cuotas</p>
+                                            <p style="text-align: center;">Su total a pagar es de: <b id="totalPagar"></b> </p>
+                                            <p >Por favor seleccione la cantidad de cuotas</p>
+                                            <br>
                                             <div class="form-group" style="color: black;">
-                                                <select id="opcionCuotas" placeholder="Ingrese el numero de cuotas">
+                                                <select class="opcionCuotas" id="opcionCuotas" placeholder="Ingrese el numero de cuotas">
                                                     <option id="1">1</option>
                                                     <option id="3">3</option>
                                                     <option id="6">6</option>
                                                     <option id="12">12</option> 
                                                 </select>
                                             </div>
-                                           <p> Su monto por cuota será de: <b id=cantidadCuotas></b> </p> 
+                                            <button class="item-button btn btn-primary calcular" style="text-align: center;">Calcular</button>
+                                            <div class="resultado">
+                                                <br>
+                                            </div>
+                                            <br>
+                                           <p style="text-align: center;"> Su monto por cuota será de: <b id=cantidadCuotas></b> </p> 
                                         </div>
                                    
                                     <div id="product-list" class="col-md-8">

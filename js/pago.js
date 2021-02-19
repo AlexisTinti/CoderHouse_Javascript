@@ -1,8 +1,32 @@
 var totalActual = localStorage.getItem("totalActual");
-console.log(totalActual);
-
 document.getElementById("totalPagar").innerHTML = totalActual;
 
-var c1 = document.getElementById("1").innerText;
-console.log(c1);
+const elementoSeleccionado = document.querySelector('.opcionCuotas');
+elementoSeleccionado.addEventListener('change',(event) => {
+resultado = document.querySelector('.resultado');
+resultado =  event.target.value ;
+resultadoTotal = parseInt(resultado);
+});
+
+const calcularBoton = document.querySelector('.calcular');
+calcularBoton.addEventListener('click', calculoCuotas);
+
+function calculoCuotas( resultado){ 
+    const cuotas = document.querySelector('.opcionCuotas');
+    cuotasNumero = cuotas.length;
+
+    for (let i = 0; i < cuotasNumero; i++) {
+        let numeroCuota = cuotas[i].innerText;
+        if(numeroCuota == resultadoTotal ){
+            var totalNuevo = totalActual / numeroCuota;
+            mostrarTotal(totalNuevo);
+            break;
+        }
+    }
+}
+
+function mostrarTotal(totalNuevo){
+document.getElementById("cantidadCuotas").innerHTML = totalNuevo;
+}
+
 
