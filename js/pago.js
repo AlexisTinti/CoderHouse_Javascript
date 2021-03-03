@@ -1,5 +1,5 @@
 var totalActual = localStorage.getItem("totalActual");
-document.getElementById("totalPagar").innerHTML = totalActual;
+$("#totalPagar").html(totalActual);
 
 const elementoSeleccionado = document.querySelector('.opcionCuotas');
 elementoSeleccionado.addEventListener('change',(event) => {
@@ -11,9 +11,10 @@ resultadoTotal = parseInt(resultado);
 const calcularBoton = document.querySelector('.calcular');
 calcularBoton.addEventListener('click', calculoCuotas);
 
-function calculoCuotas( resultado){ 
+function calculoCuotas(){ 
     const cuotas = document.querySelector('.opcionCuotas');
     cuotasNumero = cuotas.length;
+    console.log(cuotas.length);
 
     for (let i = 0; i < cuotasNumero; i++) {
         let numeroCuota = cuotas[i].innerText;
@@ -26,7 +27,7 @@ function calculoCuotas( resultado){
 }
 
 function mostrarTotal(totalNuevo){
-document.getElementById("cantidadCuotas").innerHTML = totalNuevo;
+$("#cantidadCuotas").html(totalNuevo);
 }
 
 

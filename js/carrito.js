@@ -1,63 +1,32 @@
+const añadirACarritoBotones = $('.addToCart').click(añadirACarritoClick);
+const comprarBoton = $('.comprarButton').click(comprarBotonClick);
 
-//Se crea añadirACarritoBotones. Dentro, se guardan todos los botones donde exista "addToCart", en posiciones NodeList.
-const añadirACarritoBotones = document.querySelectorAll('.addToCart');
+const contenedorItemsCarrito = $('.shoppingCartItemsContainer');
 
-//Se usa el metodo forEach para recorrer la lista dentro de añadirACarritoBotones, por cada vez que se haya hecho click a un boton de compra
-añadirACarritoBotones.forEach((añadirACarritoBoton) => {
-  añadirACarritoBoton.addEventListener('click', añadirACarritoClick);
-});
-
-//Se crea comprarBoton. Dentro se guarda el boton de Compra donde exista "compratButton" en posicion 0 NodeList
-const comprarBoton = document.querySelector('.comprarButton');
-
-//Se lanza la funcion "comprarBotonClick" al hacer click en el boton de compra
-comprarBoton.addEventListener('click', comprarBotonClick);
-
-//Se crea contenedorItemsCarrito. Dentro se guardan el contenedor que muestra la seccion de items ya seleccionados
-const contenedorItemsCarrito = document.querySelector(
-  '.shoppingCartItemsContainer'
-);
-
-//Se crea la funcion añadirACarritoClick donde se guardan en las constantes escritas los valores boton, item, titulo, precio e imagen del boton clickeado por el usuario
 function añadirACarritoClick(event) {
-  const button = event.target;
-  const item = button.closest('.item');
+  const item = $(event.target).closest('.item');
 
-  const tituloItem = item.querySelector('.item-title').textContent;
-  const precioItem = item.querySelector('.item-price').textContent;
-  const imagenItem = item.querySelector('.item-image').src;
+  const tituloItem = item.find('.item-title').text();
+  const precioItem = item.find('.item-price').text();
+  const imagenItem = item.find('.item-image').attr('src');
 
-  //Se llama la funcion añadirItemACarrito y se le pasan los parametros tomados anteriormente
   añadirItemACarrito(tituloItem, precioItem, imagenItem);
- 
 }
-
-
-//Se crea la funcion añadirItemACarrito, la cual graficara, eliminara o cambiara los elementos que hayan sido añadidos al carrito. y sus cantidades
 function añadirItemACarrito(tituloItem, precioItem, imagenItem) {
-  //Se crea tituloElementos, que es igual a la cantidad de contenedorItemsCarrito que tengan dentro el nombre de clase "shoppingCartItemTitle"
-  const tituloElementos = contenedorItemsCarrito.getElementsByClassName(
-    'shoppingCartItemTitle'
-  );
-  //Se crea un for para recorrer las posiciones dentro de tituloElementos
+  const tituloElementos = contenedorItemsCarrito.find('shoppingCartItemTitle');
+
   for (let i = 0; i < tituloElementos.length; i++) {
-    //Si el texto dentro de la posicion i de tituloElementos es exactamente igual al texto dentro de "tituloItem" entonces:
-    //Se crea cantidadDeElementos, que seria igual a la cantidad de "shoppingCartItemQuantity" que existen dentro de la posicion i de "tituloElementos"
-    if (tituloElementos[i].innerText === tituloItem) {
-      let cantidadDeElementos = tituloElementos[i].parentElement.parentElement.parentElement.querySelector('.shoppingCartItemQuantity');
-      //se incrementa el valor de cantidadDeElementos +1
+
+    if (tituloElementos[i].text() === tituloItem) {
+      let cantidadDeElementos = tituloElementos[i].$(this).closest('.shoppingCartItemQuantity');
       cantidadDeElementos.value++;
       $('.toast').toast('show');
-      //se llama a la funcion actualizarTotalCarrito
       actualizarTotalCarrito();
       return;
     }
   }
+  const carritoRow = $('<div/>');
 
-  //Se crea carritoRow para graficar los elementos
-  const carritoRow = document.createElement('div');
-
-  //Se crea contenidoCarrito, donde se grafican los items dentro del carrito
   const contenidoCarrito = `
   <div class="row shoppingCartItem">
         <div class="col-6">
@@ -81,72 +50,58 @@ function añadirItemACarrito(tituloItem, precioItem, imagenItem) {
         </div>
     </div>`;
 
-    //Se muestra en carritoRow el contenido graficado en contenidoCarrito
-  carritoRow.innerHTML = contenidoCarrito;
-
-  //Se crea un nuevo carritoRow debajo de cada shoppingCartItem
+  carritoRow.html(contenidoCarrito);
   contenedorItemsCarrito.append(carritoRow);
+  carritoRow.find('.buttonDelete').click(eliminarItemCarrito);
 
-  //Se busca dentro de carritoRow el elemento que contenga "buttonDelete". Si se clickea el boton, se ejecuta "eliminarItemCarrito"
-  carritoRow.querySelector('.buttonDelete').addEventListener('click', eliminarItemCarrito);
-
- //Se busca dentro de carritoRow el elemento que contenga "shoppingCartItemQuantity". Si se cambia el valor, se ejecuta "cambioCantidad"
-  carritoRow.querySelector('.shoppingCartItemQuantity').addEventListener('change', cambioCantidad);
-
-  //Se ejecuta actualizarTotalCarrito
+  carritoRow.find('.shoppingCartItemQuantity').change(cambioCantidad);
   actualizarTotalCarrito();
 }
 
-//Se crea la funcion actualizarTotalCarrito
+var totalLS;
 function actualizarTotalCarrito() {
   let total = 0;
-  //Se crea totalCarrito, que tiene el valor de la cantidad de veces que existe shoppingCarTotal
-  const totalCarrito = document.querySelector('.shoppingCartTotal');
-  //Se crea itemsCarrito, que tiene el valor de la cantidad de veces que existe shoppingCarItem
-  const itemsCarrito = document.querySelectorAll('.shoppingCartItem');
+  const totalCarrito = $('.shoppingCartTotal');
+  const itemsCarrito = $('.shoppingCartItem');
 
-  itemsCarrito.forEach((itemCarrito) => {
-    const precioItemsCarrito = itemCarrito.querySelector(
-      '.shoppingCartItemPrice'
-    );
-    const precioItemCarrito = Number(
-      precioItemsCarrito.textContent.replace('$', '')
-    );
-    const cantidadItemsCarrito = itemCarrito.querySelector(
-      '.shoppingCartItemQuantity'
-    );
-    const cantidadItemCarrito = Number(
-      cantidadItemsCarrito.value
-    );
+  $.each(itemsCarrito, function(index, element) {
+
+    const precioItemsCarrito = $(this).find('.shoppingCartItemPrice');
+    const precioItemCarrito = Number(precioItemsCarrito.text().replace('$', ''));
+    const cantidadItemsCarrito = $(this).find('.shoppingCartItemQuantity');
+    const cantidadItemCarrito = Number(cantidadItemsCarrito.val());
+
     total = total + precioItemCarrito * cantidadItemCarrito;
+    
   });
-  totalCarrito.innerHTML = `${total.toFixed(2)}$`;
-  
-  guardarLocalStore(total);
+
+  totalCarrito.html(`${total.toFixed(2)}$`);
+  totalLS = parseInt(total);
 }
 
-function guardarLocalStore(total)
-{
-  var totalActual = total;
+
+function guardarLocalStore(totalLS){
+  var totalActual = totalLS;
   localStorage.setItem("totalActual", totalActual);
- 
+  console.log("el valor guardado hasta ahora es de" + totalActual);
 }
 
 function eliminarItemCarrito(event) {
-  const botonClick = event.target;
-  botonClick.closest('.shoppingCartItem').remove();
+  const botonClick = $(event.target).closest('.shoppingCartItem').remove();
   actualizarTotalCarrito();
 }
 
 function cambioCantidad(event) {
-  const input = event.target;
-  input.value <= 0 ? (input.value = 1) : null;
+  const input = ($(event.target).val() <= 0) ? ($(event.target).val() = 1) : null;
   actualizarTotalCarrito();
 }
 
 function comprarBotonClick() {
   
+  guardarLocalStore(totalLS);
+  actualizarTotalCarrito();
   window.location.href="./Assets/Compra.html"
-  contenedorItemsCarrito.innerHTML = '';
+  contenedorItemsCarrito.html('');
+  
   
 }
