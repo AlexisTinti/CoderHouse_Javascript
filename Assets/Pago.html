@@ -9,6 +9,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <script src="../js/ajax.js"></script>
         
        
     </head>
@@ -69,6 +70,17 @@
                                             <br>
                                            <p style="text-align: center;"> Su monto por cuota será de: <b id=cantidadCuotas></b> </p> 
                                         </div>
+                                        <div class="col-12">
+                                            <form action="#" method="post" id="formulario" style="padding-top: 0; padding-bottom: 0; color: black; " onsubmit="validacionMail()" >
+                                                <div class="email">
+                                                    <label for="email"></label>
+                                                    <input type="email" placeholder="Mi e-mail es" name="email" id="input_mail" required>
+                                                </div>
+                                                <div class="enviar">
+                                                    <input type="submit" value="Enviar" id="form_button" />
+                                                </div>
+                                            </form>
+                                        </div>
                                    
                                     <div id="product-list" class="col-md-8">
 
@@ -123,6 +135,7 @@
                 </footer>
             </main>
             <script src="../js/pago.js"></script>
+            
             
     </body>
 </html>
